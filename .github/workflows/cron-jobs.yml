@@ -15,6 +15,6 @@ jobs:
         run: |
           echo "Scheduled task executed"
 
-git add .github/workflows/cron-job.yml
-git commit -m "Add cronjob workflow"
+git add 504-serverless-function/.github/workflows/cron-job.yml
+git commit -m "Add cron job workflow"
 git push origin main
