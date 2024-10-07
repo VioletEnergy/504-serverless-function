@@ -14,7 +14,8 @@ jobs:
       - name: Run a scheduled task
         run: |
           echo "Scheduled task executed"
-
-git add .github/workflows/cron-job.yml
-git commit -m "Fix cron job YAML formatting"
-git push origin main
+  - name: "commit changes"
+  run: |
+    git add .github/workflows/cron-job.yml
+    git commit -m "Fix cron job YAML formatting"
+    git push origin main
