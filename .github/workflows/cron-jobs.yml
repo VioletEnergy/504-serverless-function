@@ -15,6 +15,3 @@ jobs:
         run: |
           echo "Scheduled task executed"
 
-git add .github/workflows/cron-jobs.yml
-git commit -m "Add cron job workflow"
-git push origin main
