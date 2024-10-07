@@ -1,20 +1,29 @@
-name: Scheduled Cron Job
+name: pubmed_update
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  # schedule:
+  #   - cron: "0 5 * * *" # run once a day at midnight
+  workflow_dispatch:  # manual triggers
+
 jobs:
-  run-cron-job:
+  run-data-pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout repo content
+        uses: actions/checkout@v4
 
-      - name: Run a scheduled task
-        run: |
-          echo "Scheduled task executed"
-  - name: "commit changes"
-  run: |
-    git add .github/workflows/cron-job.yml
-    git commit -m "Fix cron job YAML formatting"
-    git push origin main
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run PubMed Retrieval Script
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: python other/module5/pubmed_github_action.py # run data pipeline
+
+     
